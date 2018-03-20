@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.kotdroid.testapp.OreoActivity">
+
+    <Button
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        android:id="@+id/btnPipMode"
+        android:gravity="center_horizontal"
+        android:text="PIP Mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        android:id="@+id/btnNotification"
+        android:text="Notifications in Oreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btnAutofill"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        android:text="Autofll Framework"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnAutoSize"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        android:text="AutoSizing Textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>
