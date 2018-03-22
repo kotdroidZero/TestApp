@@ -6,34 +6,75 @@
     android:orientation="vertical"
     tools:context="com.kotdroid.testapp.OreoActivity">
 
-    <Button
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-        android:id="@+id/btnPipMode"
-        android:gravity="center_horizontal"
-        android:text="PIP Mode"
+    <FrameLayout
+        android:id="@+id/flContainerMain"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
     <Button
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-        android:id="@+id/btnNotification"
-        android:text="Notifications in Oreo"
+        android:id="@+id/btnPipMode"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="PIP Mode"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
+    <Button
+        android:id="@+id/btnNotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notifications in Oreo"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
     <Button
         android:id="@+id/btnAutofill"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-        android:text="Autofll Framework"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Autofll Framework"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
     <Button
         android:id="@+id/btnAutoSize"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-        android:text="AutoSizing Textview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="AutoSizing Textview"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
+    <Button
+        android:id="@+id/btnFontDownloadable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Downloadable Fonts"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
+    <Button
+        android:id="@+id/btnPinnedShortcut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add to HomeScreen"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
+    <Button
+        android:id="@+id/btnChangeShortcutLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change shortcut label"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
+    <Button
+        android:id="@+id/btnColorSpace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ColorSpace"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
+    <Button
+        android:id="@+id/btnNougat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Android N"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
 
 </LinearLayout>

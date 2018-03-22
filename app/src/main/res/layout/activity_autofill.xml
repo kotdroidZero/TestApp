@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="16dp"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     tools:context="com.kotdroid.testapp.AutofillActivity">
-<EditText
-    android:id="@+id/etEmail"
-    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-    android:autofillHints="username"
-    android:hint="email"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/etPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="phone"
+        android:inputType="phone"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
     <EditText
         android:id="@+id/etPassword"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:autofillHints="password"
         android:hint="password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:inputType="textPassword"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
     <Button
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
         android:id="@+id/btnSubmit"
-        android:text="Submit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
 
 </LinearLayout>

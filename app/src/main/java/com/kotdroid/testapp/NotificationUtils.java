@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -35,7 +36,10 @@ public class NotificationUtils extends ContextWrapper {
 
 
     // Key for the string that's delivered in the action's intent.
-    private static final String KEY_TEXT_REPLY = "key_text_reply";
+    public static final String KEY_MESSAGE_ID = "messageId";
+    public static final String KEY_TEXT_REPLY = "key_text_reply";
+    public static final String KEY_NOTIFICATION_ID = "notification";
+    private String REPLY_ACTION = "reply";
 
     @RequiresApi(api = Build.VERSION_CODES.O) public NotificationUtils(Context base) {
         super(base);
@@ -76,7 +80,7 @@ public class NotificationUtils extends ContextWrapper {
         return (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
-    public android.support.v4.app.NotificationCompat.Builder getGroupNotification(String title, String message) {
+    public NotificationCompat.Builder getGroupNotification(String title, String message) {
 
         return new android.support.v4.app.NotificationCompat.Builder(this, GROUP_NOTIFICATION_CHANNEL_ID)
                 .setContentText(message)
@@ -86,7 +90,7 @@ public class NotificationUtils extends ContextWrapper {
                 .setSmallIcon(R.drawable.ic_message_black_24dp);
     }
 
-    public android.support.v4.app.NotificationCompat.Builder getMessageNotification(String title, String message) {
+    public NotificationCompat.Builder getMessageNotification(String title, String message) {
 
         return new android.support.v4.app.NotificationCompat.Builder(this, MESSAGE_NOTIFICATION_CHANNEL_ID)
                 .setContentText(message)
@@ -96,7 +100,7 @@ public class NotificationUtils extends ContextWrapper {
                 .setSmallIcon(R.drawable.ic_message_black_24dp);
     }
 
-    public android.support.v4.app.NotificationCompat.Builder getFailureNotification(String title, String message) {
+    public NotificationCompat.Builder getFailureNotification(String title, String message) {
 
         Intent intent = new Intent(this, OreoActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -114,22 +118,25 @@ public class NotificationUtils extends ContextWrapper {
 
     }
 
-    public android.support.v4.app.NotificationCompat.Builder getMediaPLaybackNotification(String title, String message) {
+    public NotificationCompat.Builder getMediaPlaybackNotification(String title, String message) {
 
 
+
+
+        //1. creating remote_input for replying via notification only
         String replyLabel = getResources().getString(R.string.reply_label);
-
-        //creating remote_input for replying via notification only
         RemoteInput remoteInput = new RemoteInput.Builder(KEY_TEXT_REPLY)
                 .setLabel(replyLabel)
                 .build();
-        //now create action from that remote input
-        NotificationCompat.Action replyAction = new NotificationCompat.Action.Builder(R.drawable.ic_send_black_24dp, replyLabel, null)
+
+        //2. now create action from that remote input
+        NotificationCompat.Action replyAction = new NotificationCompat.Action.Builder(R.drawable.ic_send_black_24dp, replyLabel, getReplyPendingIntent())
                 .addRemoteInput(remoteInput)
+                .setAllowGeneratedReplies(true)
                 .build();
 
-
-        return new android.support.v4.app.NotificationCompat.Builder(this, MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_ID)
+        //3. build notification builder
+        return new NotificationCompat.Builder(this, MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_ID)
                 .setContentText(message)
                 .setContentTitle(title)
                 .setChannelId(MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_ID)
@@ -145,9 +152,25 @@ public class NotificationUtils extends ContextWrapper {
                 .addAction(replyAction)
                 //.setTimeoutAfter(3000) //after what time the notification will be auto removed
                 .setColor(Color.RED)
+
+                /**
+                 * this below method is for make your notification draggable and in-larging
+                 * you can add your custom long title ,body as well as you can also provide images to be applied in large area
+                 * */
+                .setStyle(new NotificationCompat.BigPictureStyle().setBigContentTitle(getString(R.string.text_notification_large_title)).setSummaryText(getString(R.string.text_notification_large)).bigPicture(BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcherbg)))
                 .setBadgeIconType(R.drawable.ic_notifications_black_24dp)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
 
                 ;
+    }
+
+    public PendingIntent getReplyPendingIntent() {
+        Intent intent;
+        intent = new Intent(this, NotificationBroadcastReceiver.class);
+        intent.setAction(REPLY_ACTION);
+        intent.putExtra(KEY_NOTIFICATION_ID, 12);
+        intent.putExtra(KEY_MESSAGE_ID, 15);
+        return PendingIntent.getBroadcast(getApplicationContext(), 100, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }

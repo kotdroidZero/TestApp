@@ -36,7 +36,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
                 notificationUtils.getNotificationManager().notify(1, nb1.build());
                 break;
             case R.id.btnMediaPlayBackOther:
-                NotificationCompat.Builder nb2 = notificationUtils.getMediaPLaybackNotification(etTitle.getText().toString().trim(), etMessage.getText().toString().trim());
+                NotificationCompat.Builder nb2 = notificationUtils.getMediaPlaybackNotification(etTitle.getText().toString().trim(), etMessage.getText().toString().trim());
                 notificationUtils.getNotificationManager().notify(2, nb2.build());
                 break;
             case R.id.btnGrouChat:

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvRgb"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="16dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="RGB" />
+
+    <TextView
+        android:id="@+id/tvAdobeRgb"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="16dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="Adobe RGB" />
+
+    <TextView
+        android:id="@+id/tvDisplayP3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="16dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="Display P3" />
+</GridLayout>

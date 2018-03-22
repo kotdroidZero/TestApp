@@ -7,4 +7,24 @@
         <item>40sp</item>
         <item>100sp</item>
     </array>
+
+
+    <array name="font_requests">
+        <item>Roboto</item>
+        <item>Lato</item>
+        <item>Oswald</item>
+        <item>Rajdhani</item>
+        <item>Indie Flower</item>
+        <item>Inconsolata</item>
+        <item>Dosis</item>
+        <item>Lobster</item>
+        <item>Limelight</item>
+        <item>Pacifico</item>
+        <item>Kalam</item>
+        <item>Dancing Script</item>
+        <item>Amita</item>
+        <item>Chewy</item>
+        <item>Fugaz One</item>
+
+    </array>
 </resources>

@@ -20,7 +20,5 @@ public class AutoSizingTextViewsActivity extends AppCompatActivity {
 
         tvAutoSize=findViewById(R.id.tvAutoSize);
         tvAutoSize.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_UNIFORM);
-
-
     }
 }

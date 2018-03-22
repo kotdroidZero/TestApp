@@ -8,11 +8,11 @@
     tools:context="com.kotdroid.testapp.AutoSizingTextViewsActivity">
 
     <TextView
-        android:gravity="center"
-        android:layout_gravity="center"
         android:id="@+id/tvAutoSize"
-        android:layout_width="500dp"
-        android:layout_height="300dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:text="Hello World"
         app:autoSizeTextType="uniform"
         tools:ignore="MissingPrefix">

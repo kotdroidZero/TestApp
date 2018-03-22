@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">TestApp</string>
     <string name="reply_label">Reply</string>
+    <string name="dummy_text"> You can set your application to download fonts by using Android Studio 3.0. To help you get started with the Downloadable Fonts features, you can use the font provider from Google Play services.Android 8.0 (API level 26) and Android Support Library 26 introduce support for APIs to request fonts from a provider application instead of bundling files into the APK or letting the APK download fonts. The feature is available on devices running Android API versions 14 and higher through the Support Library 26.
+    Reduces the APK size
+    Increases the app installation success rate
+    Improves the overall system health as multiple APKs can share the same font through a provider. This saves users cellular data, phone memory, and disk space. In this model, the font is fetched over the network when needed.
+</string>
+
+
+    <string name="send_email">Send Email</string>
+    <string name="shortcut_short_label">Create email</string>
+    <string name="shortcut_long_label">Create new email</string>
+    <string name="text_notification_large">I had a a dream ,we were slipping whisky neat highest floor the bowrey and we were high enough.No I don\'t wanna know where you been or where you going, but I know I will be home and you will be on your own.Whos gonna rock you when the sun won\'t let you sleep.</string>
+    <string name="text_notification_large_title">This is what you were looking for?</string>
+    <string name="notif_content_sent">message send succesfully</string>
+
 </resources>
