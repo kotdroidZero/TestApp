@@ -1,5 +1,6 @@
 package com.kotdroid.testapp;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -49,7 +50,9 @@ public class OreoActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.btnPipMode, R.id.btnNotification, R.id.btnAutoSize, R.id.btnFontDownloadable, R.id.btnPinnedShortcut, R.id.btnAutofill, R.id.btnChangeShortcutLabel, R.id.btnColorSpace, R.id.btnNougat})
+    @OnClick({R.id.btnPipMode, R.id.btnNotification, R.id.btnAutoSize, R.id.btnFontDownloadable,
+            R.id.btnPinnedShortcut, R.id.btnAutofill, R.id.btnChangeShortcutLabel,
+            R.id.btnColorSpace, R.id.btnNougat})
     public void clickEvents(View view) {
         switch (view.getId()) {
             case R.id.btnNougat:
@@ -66,7 +69,8 @@ public class OreoActivity extends AppCompatActivity {
                 break;
             case R.id.btnFontDownloadable:
                 (findViewById(R.id.flContainerMain)).setVisibility(View.VISIBLE);
-                getSupportFragmentManager().beginTransaction().add(R.id.flContainerMain, new DownloadableFontFragment(), "fragfont").commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.flContainerMain,
+                        new DownloadableFontFragment(), "fragfont").commit();
                 break;
             case R.id.btnPinnedShortcut:
                 pinnedShortcut();
@@ -76,7 +80,8 @@ public class OreoActivity extends AppCompatActivity {
                 break;
             case R.id.btnColorSpace:
                 (findViewById(R.id.flContainerMain)).setVisibility(View.VISIBLE);
-                getSupportFragmentManager().beginTransaction().add(R.id.flContainerMain, new ColorSpaceFragment(), "fragcolor").commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.flContainerMain,
+                        new ColorSpaceFragment(), "fragcolor").commit();
                 break;
         }
     }
@@ -117,9 +122,11 @@ public class OreoActivity extends AppCompatActivity {
     }
 
 
-    @Override public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode, Configuration newConfig) {
+    @Override public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode,
+                                                        Configuration newConfig) {
         if (isInPictureInPictureMode) {
             // Hide the full-screen UI (controls, etc.) while in picture-in-picture mode.
+
         } else {
             // Restore the full-screen UI.
         }
@@ -127,6 +134,6 @@ public class OreoActivity extends AppCompatActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.N) @Override protected void onUserLeaveHint() {
-        enterPictureInPictureMode();
+        this.enterPictureInPictureMode();
     }
 }

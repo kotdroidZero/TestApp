@@ -39,7 +39,13 @@
 
         </activity>
         <activity android:name=".NotificationActivity" />
-        <activity android:name=".AutofillActivity" />
+        <activity android:name=".AutofillActivity">
+            <intent-filter>
+                <action android:name="android.service.autofill.AutofillService" />
+              
+
+            </intent-filter>
+        </activity>
         <activity android:name=".AutoSizingTextViewsActivity" />
 
         <meta-data
@@ -47,10 +53,10 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".NougatActivity" />
-        <receiver android:name=".NotificationBroadcastReceiver"
+        <receiver
+            android:name=".NotificationBroadcastReceiver"
             android:enabled="true"
-            android:exported="false"
-            />
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -18,8 +18,8 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_notification);
         notificationUtils = new NotificationUtils(this);
 
-        etMessage=findViewById(R.id.etMessage);
-        etTitle=findViewById(R.id.etTitle);
+        etMessage = findViewById(R.id.etMessage);
+        etTitle = findViewById(R.id.etTitle);
 
         findViewById(R.id.btnFailureOther).setOnClickListener(this);
         findViewById(R.id.btnMediaPlayBackOther).setOnClickListener(this);
@@ -32,19 +32,23 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
 
         switch (view.getId()) {
             case R.id.btnFailureOther:
-                NotificationCompat.Builder nb1 = notificationUtils.getFailureNotification(etTitle.getText().toString().trim(), etMessage.getText().toString().trim());
+                NotificationCompat.Builder nb1 = notificationUtils.getFailureNotification(
+                        etTitle.getText().toString().trim(), etMessage.getText().toString().trim());
                 notificationUtils.getNotificationManager().notify(1, nb1.build());
                 break;
             case R.id.btnMediaPlayBackOther:
-                NotificationCompat.Builder nb2 = notificationUtils.getMediaPlaybackNotification(etTitle.getText().toString().trim(), etMessage.getText().toString().trim());
+                NotificationCompat.Builder nb2 = notificationUtils.getMediaPlaybackNotification(
+                        etTitle.getText().toString().trim(), etMessage.getText().toString().trim());
                 notificationUtils.getNotificationManager().notify(2, nb2.build());
                 break;
             case R.id.btnGrouChat:
-                NotificationCompat.Builder nb3 = notificationUtils.getGroupNotification(etTitle.getText().toString().trim(), etMessage.getText().toString().trim());
+                NotificationCompat.Builder nb3 = notificationUtils.getGroupNotification(
+                        etTitle.getText().toString().trim(), etMessage.getText().toString().trim());
                 notificationUtils.getNotificationManager().notify(3, nb3.build());
                 break;
             case R.id.btnMessageChat:
-                NotificationCompat.Builder nb4 = notificationUtils.getMessageNotification(etTitle.getText().toString().trim(), etMessage.getText().toString().trim());
+                NotificationCompat.Builder nb4 = notificationUtils.getMessageNotification(
+                        etTitle.getText().toString().trim(), etMessage.getText().toString().trim());
                 notificationUtils.getNotificationManager().notify(4, nb4.build());
                 break;
         }

@@ -1,5 +1,6 @@
 package com.kotdroid.testapp;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
@@ -9,10 +10,14 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.RemoteInput;
+
+import java.util.stream.Stream;
 
 /**
  * Created by user12 on 20/3/18.
@@ -28,7 +33,6 @@ public class NotificationUtils extends ContextWrapper {
     public static final String FAILURE_NOTIFICATION_CHANNEL_NAME = "Failure Notification";
     public static final String MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_ID = "mediaPLaybackNotification";
     public static final String MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_NAME = "Media PlayBack";
-
     public static final String CHATS_GROUP_CATEGORY_ID = "messageNotification";
     public static final String CHATS_GROUP_CATEGORY_NAME = "Message Notification";
     public static final String OTHER_GROUP_CATEGORY_ID = "otherNotification";
@@ -48,17 +52,34 @@ public class NotificationUtils extends ContextWrapper {
 
     @RequiresApi(api = Build.VERSION_CODES.O) private void createChannel() {
         //creating channel objects with unique id
-        NotificationChannel groupNotificationChannel = new NotificationChannel(GROUP_NOTIFICATION_CHANNEL_ID, GROUP_NOTIFICATION_CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+        NotificationChannel groupNotificationChannel = new NotificationChannel(
+                GROUP_NOTIFICATION_CHANNEL_ID, GROUP_NOTIFICATION_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_HIGH);
         groupNotificationChannel.setLightColor(Color.GREEN);
+        groupNotificationChannel.setShowBadge(true);
 
 
-        NotificationChannel messageNotificationChannel = new NotificationChannel(MESSAGE_NOTIFICATION_CHANNEL_ID, MESSAGE_NOTIFICATION_CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+        NotificationChannel messageNotificationChannel = new NotificationChannel(
+                MESSAGE_NOTIFICATION_CHANNEL_ID, MESSAGE_NOTIFICATION_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_HIGH);
         messageNotificationChannel.setLightColor(Color.GREEN);
+        messageNotificationChannel.setShowBadge(true);
 
-        NotificationChannel failureNotificationChannel = new NotificationChannel(FAILURE_NOTIFICATION_CHANNEL_ID, FAILURE_NOTIFICATION_CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+
+        NotificationChannel failureNotificationChannel = new NotificationChannel(
+                FAILURE_NOTIFICATION_CHANNEL_ID, FAILURE_NOTIFICATION_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_HIGH);
         failureNotificationChannel.setLightColor(Color.GREEN);
+        failureNotificationChannel.setShowBadge(true);
 
-        NotificationChannel mediaPlayBackNotificationChannel = new NotificationChannel(MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_ID, MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+        NotificationChannel mediaPlayBackNotificationChannel = new NotificationChannel(
+                MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_ID, MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_HIGH);
+        mediaPlayBackNotificationChannel.setLightColor(Color.GREEN);
+        mediaPlayBackNotificationChannel.setShowBadge(true);
+        mediaPlayBackNotificationChannel.enableVibration(true);
+        mediaPlayBackNotificationChannel.enableVibration(true);
+        mediaPlayBackNotificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
         mediaPlayBackNotificationChannel.setLightColor(Color.GREEN);
 
         getNotificationManager().createNotificationChannel(groupNotificationChannel);
@@ -67,8 +88,10 @@ public class NotificationUtils extends ContextWrapper {
         getNotificationManager().createNotificationChannel(mediaPlayBackNotificationChannel);
 
 
-        getNotificationManager().createNotificationChannelGroup(new NotificationChannelGroup(CHATS_GROUP_CATEGORY_ID, CHATS_GROUP_CATEGORY_NAME));
-        getNotificationManager().createNotificationChannelGroup(new NotificationChannelGroup(OTHER_GROUP_CATEGORY_ID, OTHER_GROUP_CATEGORY_NAME));
+        getNotificationManager().createNotificationChannelGroup(new NotificationChannelGroup(
+                CHATS_GROUP_CATEGORY_ID, CHATS_GROUP_CATEGORY_NAME));
+        getNotificationManager().createNotificationChannelGroup(new NotificationChannelGroup(
+                OTHER_GROUP_CATEGORY_ID, OTHER_GROUP_CATEGORY_NAME));
 
         mediaPlayBackNotificationChannel.setGroup(OTHER_GROUP_CATEGORY_ID);
         failureNotificationChannel.setGroup(OTHER_GROUP_CATEGORY_ID);
@@ -82,7 +105,8 @@ public class NotificationUtils extends ContextWrapper {
 
     public NotificationCompat.Builder getGroupNotification(String title, String message) {
 
-        return new android.support.v4.app.NotificationCompat.Builder(this, GROUP_NOTIFICATION_CHANNEL_ID)
+        return new android.support.v4.app.NotificationCompat.Builder(this,
+                GROUP_NOTIFICATION_CHANNEL_ID)
                 .setContentText(message)
                 .setContentTitle(title)
                 .setChannelId(GROUP_NOTIFICATION_CHANNEL_ID)
@@ -92,7 +116,8 @@ public class NotificationUtils extends ContextWrapper {
 
     public NotificationCompat.Builder getMessageNotification(String title, String message) {
 
-        return new android.support.v4.app.NotificationCompat.Builder(this, MESSAGE_NOTIFICATION_CHANNEL_ID)
+        return new android.support.v4.app.NotificationCompat.Builder(this,
+                MESSAGE_NOTIFICATION_CHANNEL_ID)
                 .setContentText(message)
                 .setContentTitle(title)
                 .setChannelId(MESSAGE_NOTIFICATION_CHANNEL_ID)
@@ -104,23 +129,27 @@ public class NotificationUtils extends ContextWrapper {
 
         Intent intent = new Intent(this, OreoActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 123, intent, 0);
-        return new android.support.v4.app.NotificationCompat.Builder(this, FAILURE_NOTIFICATION_CHANNEL_ID)
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 123,
+                intent, 0);
+        return new android.support.v4.app.NotificationCompat.Builder(this,
+                FAILURE_NOTIFICATION_CHANNEL_ID)
                 .setContentText(message)
                 .setContentTitle(title)
                 .setChannelId(FAILURE_NOTIFICATION_CHANNEL_ID)
                 .setGroup(OTHER_GROUP_CATEGORY_ID)
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText("Much longer text that cannot fit one line..."))
+                .setStyle(new NotificationCompat.MessagingStyle("Pushkar").addMessage(new NotificationCompat.MessagingStyle.Message("abcdefghijk",System.currentTimeMillis(),"abd").setData("image/*", Uri.parse("https://pbs.twimg.com/profile_images/900117721337155584/Hdk6uJRe.jpg"))))
                 .setContentIntent(pendingIntent)    //set notifications tap action
                 .setSmallIcon(R.drawable.ic_other_black_24dp)
-                .addAction(R.drawable.ic_send_black_24dp, "Reply", null);//adding action button for instant action via notification only like snoozing
+                .addAction(R.drawable.ic_send_black_24dp,
+                        "Reply",
+                        null);//adding action button for instant action via notification
+        // only like snoozing
 
     }
 
     public NotificationCompat.Builder getMediaPlaybackNotification(String title, String message) {
-
-
 
 
         //1. creating remote_input for replying via notification only
@@ -130,7 +159,8 @@ public class NotificationUtils extends ContextWrapper {
                 .build();
 
         //2. now create action from that remote input
-        NotificationCompat.Action replyAction = new NotificationCompat.Action.Builder(R.drawable.ic_send_black_24dp, replyLabel, getReplyPendingIntent())
+        NotificationCompat.Action replyAction = new NotificationCompat.Action.Builder(
+                R.drawable.ic_send_black_24dp, replyLabel, getReplyPendingIntent())
                 .addRemoteInput(remoteInput)
                 .setAllowGeneratedReplies(true)
                 .build();
@@ -138,6 +168,8 @@ public class NotificationUtils extends ContextWrapper {
         //3. build notification builder
         return new NotificationCompat.Builder(this, MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_ID)
                 .setContentText(message)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                        R.drawable.ic_tag_faces_black_24dp))
                 .setContentTitle(title)
                 .setChannelId(MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_ID)
                 .setGroup(OTHER_GROUP_CATEGORY_ID)
@@ -155,9 +187,15 @@ public class NotificationUtils extends ContextWrapper {
 
                 /**
                  * this below method is for make your notification draggable and in-larging
-                 * you can add your custom long title ,body as well as you can also provide images to be applied in large area
+                 * you can add your custom long title ,body as well as you can also provide
+                 * images to be applied in large area
                  * */
-                .setStyle(new NotificationCompat.BigPictureStyle().setBigContentTitle(getString(R.string.text_notification_large_title)).setSummaryText(getString(R.string.text_notification_large)).bigPicture(BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcherbg)))
+                .setStyle(new NotificationCompat.BigPictureStyle()
+                        .setBigContentTitle(getString(R.string.text_notification_large_title))
+                        .setSummaryText(getString(R.string.text_notification_large))
+                        .bigPicture(BitmapFactory.decodeResource(getResources(),
+                                R.drawable.ic_launcherbg)))
+//                .setStyle(new NotificationCompat.MessagingStyle("abc").addMessage(new NotificationCompat.MessagingStyle.Message("abcdgh",System.currentTimeMillis(),"jkkfsd").setData("image/*",Uri.parse("https://pbs.twimg.com/profile_images/900117721337155584/Hdk6uJRe.jpg"))))
                 .setBadgeIconType(R.drawable.ic_notifications_black_24dp)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
 
@@ -170,7 +208,10 @@ public class NotificationUtils extends ContextWrapper {
         intent.setAction(REPLY_ACTION);
         intent.putExtra(KEY_NOTIFICATION_ID, 12);
         intent.putExtra(KEY_MESSAGE_ID, 15);
+
         return PendingIntent.getBroadcast(getApplicationContext(), 100, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
+
+
     }
 }

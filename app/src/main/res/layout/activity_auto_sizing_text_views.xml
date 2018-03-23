@@ -8,9 +8,10 @@
     tools:context="com.kotdroid.testapp.AutoSizingTextViewsActivity">
 
     <TextView
+        android:fontFamily="@font/medium"
         android:id="@+id/tvAutoSize"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:text="Hello World"

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.RemoteInput;
 import android.widget.Toast;
 
@@ -17,7 +16,8 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
     @Override public void onReceive(Context context, Intent intent) {
         CharSequence reply = getReplyMessage(intent);
         int messageId = intent.getIntExtra(NotificationUtils.KEY_MESSAGE_ID, 45);
-        Toast.makeText(context, "message id : " + messageId + " \nmessage : " + reply, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "message id : " + messageId + " \nmessage : " + reply,
+                Toast.LENGTH_SHORT).show();
         int notifyId = intent.getIntExtra(NotificationUtils.KEY_NOTIFICATION_ID, 19);
         updateNotification(context, notifyId);
     }
@@ -31,10 +31,11 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
     }
 
     private void updateNotification(Context context, int notifyId) {
-        NotificationUtils utils=new NotificationUtils(context);
+        NotificationUtils utils = new NotificationUtils(context);
 
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotificationUtils.MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_ID)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,
+                NotificationUtils.MEDIA_PLAYBACK_NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_done_black_24dp)
                 .setTimeoutAfter(500)
                 .setContentText(context.getString(R.string.notif_content_sent));

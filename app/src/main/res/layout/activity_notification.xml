@@ -1,51 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     tools:context="com.kotdroid.testapp.NotificationActivity">
 
     <EditText
         android:id="@+id/etTitle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:gravity="center_vertical"
-        android:hint="title" />
+        android:hint="title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/etMessage"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etMessage"
-        android:layout_width="match_parent"
+        android:layout_width="352dp"
         android:layout_height="wrap_content"
-        android:hint="message" />
+        android:hint="message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTitle" />
 
     <Button
         android:id="@+id/btnMessageChat"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_height="0dp"
+        android:layout_marginTop="45dp"
         android:autofillHints="password"
-        android:text="Message  (Chat)" />
+        android:text="Message (Chat)"
+        app:layout_constraintEnd_toEndOf="@+id/btnMediaPlayBackOther"
+        app:layout_constraintStart_toStartOf="@+id/btnMediaPlayBackOther"
+        app:layout_constraintTop_toTopOf="@+id/etMessage" />
 
     <Button
         android:id="@+id/btnGrouChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Group  (Chat)" />
+        android:layout_marginStart="8dp"
+        android:text="Group  (Chat)"
+        app:layout_constraintStart_toStartOf="@+id/btnFailureOther"
+        app:layout_constraintTop_toBottomOf="@+id/btnMessageChat" />
 
     <Button
         android:id="@+id/btnFailureOther"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Failure  (Other)" />
+        android:layout_marginStart="32dp"
+        android:text="Failure  (Other)"
+        app:layout_constraintStart_toStartOf="@+id/btnMediaPlayBackOther"
+        app:layout_constraintTop_toBottomOf="@+id/btnGrouChat" />
 
     <Button
         android:id="@+id/btnMediaPlayBackOther"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="MediaPlayBack (Others)" />
-</LinearLayout>
+        android:layout_marginEnd="73dp"
+        android:layout_marginStart="74dp"
+        android:text="MediaPlayBack (Others)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/etMessage"
+        app:layout_constraintTop_toBottomOf="@+id/btnFailureOther" />
+</android.support.constraint.ConstraintLayout>
